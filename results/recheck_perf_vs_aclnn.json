@@ -1,0 +1,872 @@
+{
+  "op_name": "GatedDeltaRuleTraining",
+  "warmup": 5,
+  "repeats": 50,
+  "max_retries": 3,
+  "total_cases": 3,
+  "passed_cases": 3,
+  "failed_cases": 0,
+  "nan_indices": [],
+  "inf_indices": [],
+  "zero_indices": [],
+  "negative_indices": [],
+  "none_indices": [],
+  "framework": {
+    "avg_latency_ms": 23.8036,
+    "peak_memory_mb": 3138.06,
+    "operators": {
+      "aclnnAdd_AddAiCore_Add": {
+        "avg_us": 361.9242
+      },
+      "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
+        "avg_us": 3722.9747
+      },
+      "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
+        "avg_us": 627.2782
+      },
+      "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
+        "avg_us": 943.7847
+      },
+      "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
+        "avg_us": 1814.0466
+      },
+      "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
+        "avg_us": 2262.555
+      },
+      "aclnnInplaceCopy_CastAiCore_Cast": {
+        "avg_us": 30.8714
+      },
+      "aclnnInplaceCopy_SliceAiCore_Slice": {
+        "avg_us": 192.9081
+      },
+      "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+        "avg_us": 2984.7017
+      },
+      "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+        "avg_us": 285.322
+      },
+      "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
+        "avg_us": 1413.4655
+      },
+      "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
+        "avg_us": 2059.4987
+      },
+      "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
+        "avg_us": 1607.5957
+      },
+      "chunk_local_cumsum_scalar_kernel": {
+        "avg_us": 40.7439
+      },
+      "chunk_scaled_dot_kkt_fwd_kernel": {
+        "avg_us": 499.776
+      },
+      "l2norm_bwd_kernel": {
+        "avg_us": 1047.8695
+      },
+      "l2norm_fwd_kernel": {
+        "avg_us": 474.2449
+      },
+      "solve_tril_64x64_kernel": {
+        "avg_us": 3805.2441
+      }
+    }
+  },
+  "implementation": {
+    "avg_latency_ms": 21.2275,
+    "peak_memory_mb": 2581.82,
+    "operators": {
+      "_cast_dense_kernel": {
+        "avg_us": 41.3997
+      },
+      "_order_sequences_by_chunk_count_kernel": {
+        "avg_us": 11.8323
+      },
+      "_paired_l2norm_bwd_q_dk_parts_kernel": {
+        "avg_us": 882.4329
+      },
+      "_paired_l2norm_fwd_kernel": {
+        "avg_us": 441.1354
+      },
+      "_sum_first_axis_kernel": {
+        "avg_us": 21.6489
+      },
+      "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+        "avg_us": 131.1876
+      },
+      "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+        "avg_us": 30.7072
+      },
+      "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+        "avg_us": 4519.4281
+      },
+      "chunk_fwd_kernel_o_tile_owned": {
+        "avg_us": 1759.1527
+      },
+      "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+        "avg_us": 3794.599
+      },
+      "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+        "avg_us": 2028.741
+      },
+      "chunk_local_cumsum_scalar_kernel": {
+        "avg_us": 37.965
+      },
+      "chunk_scaled_dot_kkt_fwd_kernel": {
+        "avg_us": 432.2006
+      },
+      "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+        "avg_us": 2225.5826
+      },
+      "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+        "avg_us": 2487.3082
+      },
+      "recompute_w_u_fwd_kernel": {
+        "avg_us": 890.4126
+      },
+      "solve_tril_64x64_kernel": {
+        "avg_us": 1776.7777
+      }
+    }
+  },
+  "speedup_vs_torch": 1.1214,
+  "npu_preflight": {
+    "status": "ready",
+    "exit_code": 0,
+    "duration_ms": 15575.597,
+    "visible_devices": "<device>",
+    "checks": [
+      {
+        "name": "torch_import",
+        "status": "pass",
+        "duration_ms": 1381.745
+      },
+      {
+        "name": "torch_npu_import",
+        "status": "pass",
+        "duration_ms": 4900.847
+      },
+      {
+        "name": "npu_available",
+        "status": "pass",
+        "duration_ms": 0.142
+      },
+      {
+        "name": "device_visibility",
+        "status": "pass",
+        "duration_ms": 463.495,
+        "device_count": 1,
+        "device_index": 0
+      },
+      {
+        "name": "memory",
+        "status": "pass",
+        "duration_ms": 7852.966,
+        "free_bytes": 64821125120,
+        "total_bytes": 65443725312,
+        "min_free_bytes": 1048576,
+        "free_mb": 61818.242,
+        "total_mb": 62412.0
+      },
+      {
+        "name": "npu_smi",
+        "status": "pass",
+        "duration_ms": 976.266,
+        "returncode": 0,
+        "stdout": "NPU ID                         Chip ID                        Chip Logic ID                  Chip Name                     \n\t0                              0                              0                              Ascend 910B2C\n\t0                              1                              -                              Mcu                           \n\t1                              0                              1                              Ascend 910B2C\n\t1                              1                              -                              Mcu                           \n\t2                              0                              2                              Ascend 910B2C\n\t2                              1                              -                              Mcu                           \n\t3                              0                              3                              Ascend 910B2C\n\t3                              1                              -                              Mcu                           \n\t4                              0                              4                              Ascend 910B2C\n\t4                              1                              -                              Mcu                           \n\t5                              0                              5                              Ascend 910B2C\n\t5                              1                              -                              Mcu                           \n\t6                              0                              6                              Ascend 910B2C\n\t6                              1                              -                              Mcu                           \n\t7                              0                              7                              Ascend 910B2C\n\t7                              1                              -                              Mcu                           \n\t8                              0                              8                              Ascend 910B2C\n\t8                              1                              -                              Mcu                           \n\t9                              0                              9                              Ascend 910B2C\n\t9                              1                              -                              Mcu                           \n\t10                             0                              10                             Ascend 910B2C\n\t10                             1                              -                              Mcu                           \n\t11                             0                              11                             Ascend 910B2C\n\t11                             1                              -                              Mcu                           \n\t12                             0                              12                             Ascend 910B2C\n\t12                             1                              -                              Mcu                           \n\t13                             0                              13                             Ascend 910B2C\n\t13                             1                              -                              Mcu                           \n\t14                             0                              14                             Ascend 910B2C\n\t14                             1                              -                              Mcu                           \n\t15                             0                              15                             Ascend 910B2C\n\t15                             1                              -                              Mcu"
+      }
+    ]
+  },
+  "failure_class": null,
+  "per_shape_results": [
+    {
+      "case_idx": 1,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            13
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 842, 1503, 2496, 3171, 13404, 14095, 15242, 15472, 15803, 16078, 16306, 16358]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 27.3643,
+        "peak_memory_mb": 3501.45,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 400.0502,
+            "launch_count": 2
+          },
+          "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
+            "avg_us": 4123.9229,
+            "launch_count": 1
+          },
+          "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
+            "avg_us": 685.7673,
+            "launch_count": 1
+          },
+          "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
+            "avg_us": 1050.5988,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
+            "avg_us": 2304.9251,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
+            "avg_us": 2696.9591,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_CastAiCore_Cast": {
+            "avg_us": 31.1295,
+            "launch_count": 3
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 210.3471,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 3341.2837,
+            "launch_count": 23
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 322.7177,
+            "launch_count": 3
+          },
+          "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
+            "avg_us": 1578.4234,
+            "launch_count": 1
+          },
+          "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
+            "avg_us": 2272.7349,
+            "launch_count": 1
+          },
+          "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
+            "avg_us": 1795.7478,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 41.3458,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 547.13,
+            "launch_count": 1
+          },
+          "l2norm_bwd_kernel": {
+            "avg_us": 1168.3302,
+            "launch_count": 2
+          },
+          "l2norm_fwd_kernel": {
+            "avg_us": 534.6909,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 4258.152,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 23.7851,
+        "peak_memory_mb": 2920.42,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 46.326,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 10.4396,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 983.9497,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 493.2581,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 23.5734,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 132.5966,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 34.0152,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 4985.5689,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1947.1028,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 4195.3745,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 2239.0816,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 40.9837,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 478.0915,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 2463.8845,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 2751.4144,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 983.8405,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1975.571,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 1.1505,
+      "error_type": null,
+      "error_msg": null
+    },
+    {
+      "case_idx": 2,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            18
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 747, 1328, 2237, 2743, 4133, 4366, 5190, 5734, 5858, 5959, 6051, 8215, 8568, 9542, 9604, 10959, 11166]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 18.4597,
+        "peak_memory_mb": 2408.51,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 284.4044,
+            "launch_count": 2
+          },
+          "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
+            "avg_us": 2912.2376,
+            "launch_count": 1
+          },
+          "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
+            "avg_us": 512.1925,
+            "launch_count": 1
+          },
+          "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
+            "avg_us": 740.7713,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
+            "avg_us": 1234.9354,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
+            "avg_us": 1612.6732,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_CastAiCore_Cast": {
+            "avg_us": 30.1173,
+            "launch_count": 3
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 160.2706,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 2269.1346,
+            "launch_count": 23
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 211.3869,
+            "launch_count": 3
+          },
+          "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
+            "avg_us": 1111.5336,
+            "launch_count": 1
+          },
+          "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
+            "avg_us": 1642.1898,
+            "launch_count": 1
+          },
+          "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
+            "avg_us": 1233.6291,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 32.89,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 404.5357,
+            "launch_count": 1
+          },
+          "l2norm_bwd_kernel": {
+            "avg_us": 801.1859,
+            "launch_count": 2
+          },
+          "l2norm_fwd_kernel": {
+            "avg_us": 359.6706,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 2905.986,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 16.7654,
+        "peak_memory_mb": 1964.25,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 33.0516,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 14.3653,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 680.3782,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 335.955,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 17.6182,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 125.9415,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 25.937,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 3574.5293,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1367.1803,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 2941.4268,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 1550.6576,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 31.95,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 338.94,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 1730.1728,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 1940.7768,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 693.9183,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1362.5996,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 1.1011,
+      "error_type": null,
+      "error_msg": null
+    },
+    {
+      "case_idx": 3,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            16
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 2217, 5118, 8103, 8329, 9144, 12067, 12287, 13907, 14138, 15075, 15295, 15448, 15548, 16204, 16334]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 26.7004,
+        "peak_memory_mb": 3504.21,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 401.318,
+            "launch_count": 2
+          },
+          "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
+            "avg_us": 4132.7637,
+            "launch_count": 1
+          },
+          "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
+            "avg_us": 683.8748,
+            "launch_count": 1
+          },
+          "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
+            "avg_us": 1039.9839,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
+            "avg_us": 1902.2792,
+            "launch_count": 1
+          },
+          "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
+            "avg_us": 2478.0326,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_CastAiCore_Cast": {
+            "avg_us": 31.3674,
+            "launch_count": 3
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 208.1066,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 3343.6869,
+            "launch_count": 23
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 321.8615,
+            "launch_count": 3
+          },
+          "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
+            "avg_us": 1550.4396,
+            "launch_count": 1
+          },
+          "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
+            "avg_us": 2263.5713,
+            "launch_count": 1
+          },
+          "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
+            "avg_us": 1793.4103,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 47.996,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 547.6624,
+            "launch_count": 1
+          },
+          "l2norm_bwd_kernel": {
+            "avg_us": 1174.0925,
+            "launch_count": 2
+          },
+          "l2norm_fwd_kernel": {
+            "avg_us": 528.3732,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 4251.5944,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 23.9871,
+        "peak_memory_mb": 2860.8,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 44.8216,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 10.692,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 982.9707,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 494.193,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 23.755,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 135.0247,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 32.1694,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 4998.1862,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1963.175,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 4246.9958,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 2296.4839,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 40.9613,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 479.5703,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 2482.6904,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 2769.7333,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 993.479,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1992.1625,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 1.1131,
+      "error_type": null,
+      "error_msg": null
+    }
+  ]
+}

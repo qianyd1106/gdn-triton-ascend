@@ -1,0 +1,85 @@
+{
+  "op_name": "GatedDeltaRuleTraining",
+  "total_cases": 3,
+  "passed_cases": 3,
+  "failed_cases": 0,
+  "failures": [],
+  "npu_preflight": {
+    "status": "ready",
+    "exit_code": 0,
+    "duration_ms": 16095.9,
+    "visible_devices": "<device>",
+    "checks": [
+      {
+        "name": "torch_import",
+        "status": "pass",
+        "duration_ms": 1910.184
+      },
+      {
+        "name": "torch_npu_import",
+        "status": "pass",
+        "duration_ms": 5131.198
+      },
+      {
+        "name": "npu_available",
+        "status": "pass",
+        "duration_ms": 0.143
+      },
+      {
+        "name": "device_visibility",
+        "status": "pass",
+        "duration_ms": 453.107,
+        "device_count": 1,
+        "device_index": 0
+      },
+      {
+        "name": "memory",
+        "status": "pass",
+        "duration_ms": 7873.954,
+        "free_bytes": 64803160064,
+        "total_bytes": 65442938880,
+        "min_free_bytes": 1048576,
+        "free_mb": 61801.109,
+        "total_mb": 62411.25
+      },
+      {
+        "name": "npu_smi",
+        "status": "pass",
+        "duration_ms": 727.171,
+        "returncode": 0,
+        "stdout": "NPU ID                         Chip ID                        Chip Logic ID                  Chip Name                     \n\t0                              0                              0                              Ascend 910B2C\n\t0                              1                              -                              Mcu                           \n\t1                              0                              1                              Ascend 910B2C\n\t1                              1                              -                              Mcu                           \n\t2                              0                              2                              Ascend 910B2C\n\t2                              1                              -                              Mcu                           \n\t3                              0                              3                              Ascend 910B2C\n\t3                              1                              -                              Mcu                           \n\t4                              0                              4                              Ascend 910B2C\n\t4                              1                              -                              Mcu                           \n\t5                              0                              5                              Ascend 910B2C\n\t5                              1                              -                              Mcu                           \n\t6                              0                              6                              Ascend 910B2C\n\t6                              1                              -                              Mcu                           \n\t7                              0                              7                              Ascend 910B2C\n\t7                              1                              -                              Mcu                           \n\t8                              0                              8                              Ascend 910B2C\n\t8                              1                              -                              Mcu                           \n\t9                              0                              9                              Ascend 910B2C\n\t9                              1                              -                              Mcu                           \n\t10                             0                              10                             Ascend 910B2C\n\t10                             1                              -                              Mcu                           \n\t11                             0                              11                             Ascend 910B2C\n\t11                             1                              -                              Mcu                           \n\t12                             0                              12                             Ascend 910B2C\n\t12                             1                              -                              Mcu                           \n\t13                             0                              13                             Ascend 910B2C\n\t13                             1                              -                              Mcu                           \n\t14                             0                              14                             Ascend 910B2C\n\t14                             1                              -                              Mcu                           \n\t15                             0                              15                             Ascend 910B2C\n\t15                             1                              -                              Mcu"
+      }
+    ]
+  },
+  "environment": {
+    "timestamp": "2026-11-23T20:55:58+08:00",
+    "triton": {
+      "version": "3.2.0",
+      "path": "<venv>/lib/python3.11/site-packages/triton",
+      "key_sha256": "35c727468b809707c1978c802dc2053f751e9d97aaab9976782fbc746c5e259f"
+    },
+    "cache": {
+      "dir": "/tmp/triton_verify_cache_ndcz64dp",
+      "fresh": true,
+      "fresh_effective": true,
+      "always_compile": false
+    },
+    "cann": {
+      "ascend_home_path": "/usr/local/Ascend/cann-9.0.0",
+      "error": "ImportError: cannot import name 'get_cann_version_file_hash' from 'triton.backends.ascend.utils' (<venv>/lib/python3.11/site-packages/triton/backends/ascend/utils.py)"
+    },
+    "torch": {
+      "version": "2.10.0+cpu",
+      "torch_npu_version": "2.10.0.post2"
+    },
+    "device": {
+      "ASCEND_RT_VISIBLE_DEVICES": "3",
+      "current_device": 0,
+      "npu_name": "Ascend910B2C"
+    },
+    "cmdline": {
+      "triton_impl_name": "triton_ascend_impl",
+      "non_compute": false
+    }
+  }
+}

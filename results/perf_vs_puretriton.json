@@ -1,0 +1,917 @@
+{
+  "op_name": "GatedDeltaRuleTraining",
+  "warmup": 5,
+  "repeats": 10,
+  "max_retries": 3,
+  "total_cases": 3,
+  "passed_cases": 3,
+  "failed_cases": 0,
+  "nan_indices": [],
+  "inf_indices": [],
+  "zero_indices": [],
+  "negative_indices": [],
+  "none_indices": [],
+  "framework": {
+    "avg_latency_ms": 48.738,
+    "peak_memory_mb": 2789.76,
+    "operators": {
+      "aclnnAdd_AddAiCore_Add": {
+        "avg_us": 1441.9073
+      },
+      "aclnnAdds_AddAiCore_Add": {
+        "avg_us": 18.8373
+      },
+      "aclnnInplaceCopy_SliceAiCore_Slice": {
+        "avg_us": 195.5232
+      },
+      "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+        "avg_us": 4277.7152
+      },
+      "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+        "avg_us": 33.3677
+      },
+      "aclnnMul_BroadcastToAiCore_BroadcastTo": {
+        "avg_us": 206.7587
+      },
+      "aclnnMul_MulAiCore_Mul": {
+        "avg_us": 3219.4653
+      },
+      "aclnnMuls_Muls_Muls": {
+        "avg_us": 16.449
+      },
+      "aclnnPowTensorScalar_PowsAiCore_Pows": {
+        "avg_us": 30.2655
+      },
+      "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
+        "avg_us": 440.8202
+      },
+      "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
+        "avg_us": 20.7509
+      },
+      "chunk_bwd_kernel_dqkwg": {
+        "avg_us": 12016.5298
+      },
+      "chunk_bwd_kernel_dv_local": {
+        "avg_us": 967.5874
+      },
+      "chunk_fwd_kernel_o": {
+        "avg_us": 2421.7628
+      },
+      "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+        "avg_us": 4922.5254
+      },
+      "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
+        "avg_us": 7614.0783
+      },
+      "chunk_local_cumsum_scalar_kernel": {
+        "avg_us": 36.621
+      },
+      "chunk_scaled_dot_kkt_fwd_kernel": {
+        "avg_us": 500.6273
+      },
+      "prepare_wy_repr_bwd_kernel": {
+        "avg_us": 5463.0984
+      },
+      "recompute_w_u_fwd_kernel": {
+        "avg_us": 1774.1542
+      },
+      "solve_tril_64x64_kernel": {
+        "avg_us": 3802.9993
+      }
+    }
+  },
+  "implementation": {
+    "avg_latency_ms": 21.0521,
+    "peak_memory_mb": 2579.83,
+    "operators": {
+      "_cast_dense_kernel": {
+        "avg_us": 40.6039
+      },
+      "_order_sequences_by_chunk_count_kernel": {
+        "avg_us": 11.9667
+      },
+      "_paired_l2norm_bwd_q_dk_parts_kernel": {
+        "avg_us": 880.8278
+      },
+      "_paired_l2norm_fwd_kernel": {
+        "avg_us": 435.514
+      },
+      "_sum_first_axis_kernel": {
+        "avg_us": 23.5256
+      },
+      "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+        "avg_us": 131.2186
+      },
+      "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+        "avg_us": 32.1999
+      },
+      "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+        "avg_us": 4517.0527
+      },
+      "chunk_fwd_kernel_o_tile_owned": {
+        "avg_us": 1757.3777
+      },
+      "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+        "avg_us": 3813.0538
+      },
+      "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+        "avg_us": 2027.5803
+      },
+      "chunk_local_cumsum_scalar_kernel": {
+        "avg_us": 37.3331
+      },
+      "chunk_scaled_dot_kkt_fwd_kernel": {
+        "avg_us": 431.7132
+      },
+      "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+        "avg_us": 2220.3041
+      },
+      "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+        "avg_us": 2483.6032
+      },
+      "recompute_w_u_fwd_kernel": {
+        "avg_us": 890.7417
+      },
+      "solve_tril_64x64_kernel": {
+        "avg_us": 1602.5648
+      }
+    }
+  },
+  "speedup_vs_torch": 2.3151,
+  "npu_preflight": {
+    "status": "ready",
+    "exit_code": 0,
+    "duration_ms": 16204.445,
+    "visible_devices": "<device>",
+    "checks": [
+      {
+        "name": "torch_import",
+        "status": "pass",
+        "duration_ms": 1722.387
+      },
+      {
+        "name": "torch_npu_import",
+        "status": "pass",
+        "duration_ms": 5341.023
+      },
+      {
+        "name": "npu_available",
+        "status": "pass",
+        "duration_ms": 0.143
+      },
+      {
+        "name": "device_visibility",
+        "status": "pass",
+        "duration_ms": 533.827,
+        "device_count": 1,
+        "device_index": 0
+      },
+      {
+        "name": "memory",
+        "status": "pass",
+        "duration_ms": 7904.128,
+        "free_bytes": 64803147776,
+        "total_bytes": 65442938880,
+        "min_free_bytes": 1048576,
+        "free_mb": 61801.098,
+        "total_mb": 62411.25
+      },
+      {
+        "name": "npu_smi",
+        "status": "pass",
+        "duration_ms": 702.726,
+        "returncode": 0,
+        "stdout": "NPU ID                         Chip ID                        Chip Logic ID                  Chip Name                     \n\t0                              0                              0                              Ascend 910B2C\n\t0                              1                              -                              Mcu                           \n\t1                              0                              1                              Ascend 910B2C\n\t1                              1                              -                              Mcu                           \n\t2                              0                              2                              Ascend 910B2C\n\t2                              1                              -                              Mcu                           \n\t3                              0                              3                              Ascend 910B2C\n\t3                              1                              -                              Mcu                           \n\t4                              0                              4                              Ascend 910B2C\n\t4                              1                              -                              Mcu                           \n\t5                              0                              5                              Ascend 910B2C\n\t5                              1                              -                              Mcu                           \n\t6                              0                              6                              Ascend 910B2C\n\t6                              1                              -                              Mcu                           \n\t7                              0                              7                              Ascend 910B2C\n\t7                              1                              -                              Mcu                           \n\t8                              0                              8                              Ascend 910B2C\n\t8                              1                              -                              Mcu                           \n\t9                              0                              9                              Ascend 910B2C\n\t9                              1                              -                              Mcu                           \n\t10                             0                              10                             Ascend 910B2C\n\t10                             1                              -                              Mcu                           \n\t11                             0                              11                             Ascend 910B2C\n\t11                             1                              -                              Mcu                           \n\t12                             0                              12                             Ascend 910B2C\n\t12                             1                              -                              Mcu                           \n\t13                             0                              13                             Ascend 910B2C\n\t13                             1                              -                              Mcu                           \n\t14                             0                              14                             Ascend 910B2C\n\t14                             1                              -                              Mcu                           \n\t15                             0                              15                             Ascend 910B2C\n\t15                             1                              -                              Mcu"
+      }
+    ]
+  },
+  "failure_class": null,
+  "per_shape_results": [
+    {
+      "case_idx": 1,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            13
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 842, 1503, 2496, 3171, 13404, 14095, 15242, 15472, 15803, 16078, 16306, 16358]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16358,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 55.2903,
+        "peak_memory_mb": 3060.33,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 1732.2534,
+            "launch_count": 6
+          },
+          "aclnnAdds_AddAiCore_Add": {
+            "avg_us": 18.7886,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 216.5468,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 4763.2346,
+            "launch_count": 31
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 33.9551,
+            "launch_count": 1
+          },
+          "aclnnMul_BroadcastToAiCore_BroadcastTo": {
+            "avg_us": 214.76,
+            "launch_count": 4
+          },
+          "aclnnMul_MulAiCore_Mul": {
+            "avg_us": 3680.4189,
+            "launch_count": 14
+          },
+          "aclnnMuls_Muls_Muls": {
+            "avg_us": 16.5943,
+            "launch_count": 2
+          },
+          "aclnnPowTensorScalar_PowsAiCore_Pows": {
+            "avg_us": 30.2735,
+            "launch_count": 2
+          },
+          "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
+            "avg_us": 451.3161,
+            "launch_count": 5
+          },
+          "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
+            "avg_us": 20.8087,
+            "launch_count": 2
+          },
+          "chunk_bwd_kernel_dqkwg": {
+            "avg_us": 13308.0281,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dv_local": {
+            "avg_us": 1073.599,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o": {
+            "avg_us": 2418.0926,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 5685.7112,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
+            "avg_us": 8810.1822,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 39.3157,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 548.524,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_kernel": {
+            "avg_us": 6004.076,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 1967.9845,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 4255.872,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 23.6197,
+        "peak_memory_mb": 2920.01,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 45.376,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 10.522,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 985.4852,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 491.5795,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 25.527,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 132.9187,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 33.5812,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 4978.8892,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1948.53,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 4219.1267,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 2236.9413,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 40.2518,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 479.8971,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 2456.9642,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 2762.0263,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 985.8532,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1786.2355,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 2.3409,
+      "error_type": null,
+      "error_msg": null
+    },
+    {
+      "case_idx": 2,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            18
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 747, 1328, 2237, 2743, 4133, 4366, 5190, 5734, 5858, 5959, 6051, 8215, 8568, 9542, 9604, 10959, 11166]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            11166,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 38.2894,
+        "peak_memory_mb": 2317.46,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 893.754,
+            "launch_count": 6
+          },
+          "aclnnAdds_AddAiCore_Add": {
+            "avg_us": 18.6529,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 153.456,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 3325.4431,
+            "launch_count": 31
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 31.141,
+            "launch_count": 1
+          },
+          "aclnnMul_BroadcastToAiCore_BroadcastTo": {
+            "avg_us": 192.8241,
+            "launch_count": 4
+          },
+          "aclnnMul_MulAiCore_Mul": {
+            "avg_us": 2276.9412,
+            "launch_count": 14
+          },
+          "aclnnMuls_Muls_Muls": {
+            "avg_us": 16.2544,
+            "launch_count": 2
+          },
+          "aclnnPowTensorScalar_PowsAiCore_Pows": {
+            "avg_us": 30.3693,
+            "launch_count": 2
+          },
+          "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
+            "avg_us": 409.6305,
+            "launch_count": 5
+          },
+          "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
+            "avg_us": 20.4367,
+            "launch_count": 2
+          },
+          "chunk_bwd_kernel_dqkwg": {
+            "avg_us": 9310.5222,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dv_local": {
+            "avg_us": 766.8727,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o": {
+            "avg_us": 2145.5158,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 3772.5767,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
+            "avg_us": 5846.7618,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 30.7115,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 404.518,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_kernel": {
+            "avg_us": 4361.6803,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 1379.1792,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 2902.192,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 16.6095,
+        "peak_memory_mb": 1959.82,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 32.5057,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 14.4481,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 676.4671,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 329.7772,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 19.8629,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 126.7304,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 29.055,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 3564.5407,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1361.8486,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 2953.254,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 1550.9941,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 31.4816,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 336.8715,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 1727.799,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 1932.0193,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 694.692,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1227.139,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 2.3053,
+      "error_type": null,
+      "error_msg": null
+    },
+    {
+      "case_idx": 3,
+      "input_desc": [
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32
+          ],
+          "dtype": "torch.float32"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32
+          ],
+          "dtype": "torch.bfloat16"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            16
+          ],
+          "dtype": "torch.int32"
+        },
+        {
+          "type": "scalar",
+          "value": "[0, 2217, 5118, 8103, 8329, 9144, 12067, 12287, 13907, 14138, 15075, 15295, 15448, 15548, 16204, 16334]"
+        },
+        {
+          "type": "tensor",
+          "shape": [
+            1,
+            16334,
+            32,
+            128
+          ],
+          "dtype": "torch.bfloat16"
+        }
+      ],
+      "status": "pass",
+      "framework": {
+        "avg_latency_ms": 54.6858,
+        "peak_memory_mb": 2991.49,
+        "operators": {
+          "aclnnAdd_AddAiCore_Add": {
+            "avg_us": 1699.7144,
+            "launch_count": 6
+          },
+          "aclnnAdds_AddAiCore_Add": {
+            "avg_us": 19.0705,
+            "launch_count": 2
+          },
+          "aclnnInplaceCopy_SliceAiCore_Slice": {
+            "avg_us": 216.5668,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 4744.4679,
+            "launch_count": 31
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 35.0071,
+            "launch_count": 1
+          },
+          "aclnnMul_BroadcastToAiCore_BroadcastTo": {
+            "avg_us": 212.692,
+            "launch_count": 4
+          },
+          "aclnnMul_MulAiCore_Mul": {
+            "avg_us": 3701.0359,
+            "launch_count": 14
+          },
+          "aclnnMuls_Muls_Muls": {
+            "avg_us": 16.4983,
+            "launch_count": 2
+          },
+          "aclnnPowTensorScalar_PowsAiCore_Pows": {
+            "avg_us": 30.1537,
+            "launch_count": 2
+          },
+          "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
+            "avg_us": 461.514,
+            "launch_count": 5
+          },
+          "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
+            "avg_us": 21.0072,
+            "launch_count": 2
+          },
+          "chunk_bwd_kernel_dqkwg": {
+            "avg_us": 13431.039,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dv_local": {
+            "avg_us": 1062.2904,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o": {
+            "avg_us": 2701.68,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 5309.2883,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
+            "avg_us": 8185.291,
+            "launch_count": 2
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 39.8357,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 548.84,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_kernel": {
+            "avg_us": 6023.5388,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 1975.299,
+            "launch_count": 2
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 4250.934,
+            "launch_count": 1
+          }
+        }
+      },
+      "implementation": {
+        "avg_latency_ms": 23.7824,
+        "peak_memory_mb": 2859.65,
+        "operators": {
+          "_cast_dense_kernel": {
+            "avg_us": 43.93,
+            "launch_count": 2
+          },
+          "_order_sequences_by_chunk_count_kernel": {
+            "avg_us": 10.93,
+            "launch_count": 2
+          },
+          "_paired_l2norm_bwd_q_dk_parts_kernel": {
+            "avg_us": 980.531,
+            "launch_count": 1
+          },
+          "_paired_l2norm_fwd_kernel": {
+            "avg_us": 485.1853,
+            "launch_count": 1
+          },
+          "_sum_first_axis_kernel": {
+            "avg_us": 25.187,
+            "launch_count": 1
+          },
+          "aclnnInplaceCopy_TransposeAiCore_Transpose": {
+            "avg_us": 134.0068,
+            "launch_count": 7
+          },
+          "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
+            "avg_us": 33.9635,
+            "launch_count": 1
+          },
+          "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
+            "avg_us": 5007.7282,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_tile_owned": {
+            "avg_us": 1961.7544,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
+            "avg_us": 4266.7808,
+            "launch_count": 1
+          },
+          "chunk_gated_delta_rule_fwd_kernel_h_v128": {
+            "avg_us": 2294.8056,
+            "launch_count": 1
+          },
+          "chunk_local_cumsum_scalar_kernel": {
+            "avg_us": 40.2658,
+            "launch_count": 2
+          },
+          "chunk_scaled_dot_kkt_fwd_kernel": {
+            "avg_us": 478.3711,
+            "launch_count": 1
+          },
+          "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
+            "avg_us": 2476.149,
+            "launch_count": 1
+          },
+          "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
+            "avg_us": 2756.7641,
+            "launch_count": 1
+          },
+          "recompute_w_u_fwd_kernel": {
+            "avg_us": 991.6799,
+            "launch_count": 1
+          },
+          "solve_tril_64x64_kernel": {
+            "avg_us": 1794.3198,
+            "launch_count": 1
+          }
+        }
+      },
+      "speedup_vs_torch": 2.2994,
+      "error_type": null,
+      "error_msg": null
+    }
+  ]
+}
