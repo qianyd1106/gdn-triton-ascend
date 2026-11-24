@@ -5,7 +5,7 @@ Triton-Ascend implementation and performance optimization of **Gated Delta Rule 
 The repository contains:
 
 - a self-contained Triton-Ascend implementation of `GatedDeltaRuleTraining` (forward + backward, varlen, bf16/fp32);
-- optimization notes for the WY-adjoint and dqkwg rounds;
+- optimization notes for the WY-adjoint, dqkwg, and fwd_o rounds, plus the full optimization history;
 - frozen cases and raw benchmark results for a four-way comparison.
 
 ## Results
@@ -15,12 +15,12 @@ The repository contains:
 | Metric | Value |
 |---|---:|
 | Precision | **3/3 PASS** |
-| Speedup vs flash ACLNN | **1.1379x** |
-| Speedup vs pure Triton | **2.3151x** |
-| Implementation latency | **21.04 ms** |
-| Flash ACLNN reference | 23.95 ms |
-| Pure Triton reference | 48.74 ms |
-| Sanitized-source recheck | 1.1214x, impl 21.23 ms, 3/3 |
+| Speedup vs flash ACLNN | **1.1541x** |
+| Speedup vs pure Triton | **2.3396x** |
+| Implementation latency | **20.72 ms** |
+| Flash ACLNN reference | 23.91 ms |
+| Pure Triton reference | 48.72 ms |
+| Sanitized-source recheck | 1.1489x, impl 20.77 ms, 3/3 |
 
 ### Full 576 cases (Event, warmup 5 / repeats 10)
 
@@ -29,10 +29,10 @@ The repository contains:
 | flash ACLNN | 27.28 ms | 1.000x | 2.030x |
 | pure Triton | 55.39 ms | 0.495x | 1.000x |
 | g087 版 | 25.11 ms | 1.088x | 2.206x |
-| **dqkwg 版 (this repo)** | **24.29 ms** | **1.133x** | **2.281x** |
+| **fwdoport 版 (this repo)** | **23.63 ms** | **1.159x** | **2.344x** |
 
-- The dqkwg implementation is >1.05x vs flash ACLNN on **576/576** cases, >1.10x on **564/576**, and >1.15x on **52/576**; minimum 1.0842x.
-- It is **3.4%** faster than the g087 version (25.11 → 24.29 ms).
+- The fwdoport implementation is >1.05x vs flash ACLNN on **576/576** cases, >1.10x on **575/576**, and >1.15x on **334/576**; minimum 1.0986x.
+- It is **6.3%** faster than the g087 version (25.11 → 23.63 ms).
 
 ## Repository layout
 
@@ -47,19 +47,21 @@ The repository contains:
 │   ├── GatedDeltaRuleTraining_torch.py              # reference ACLNN wrapper
 │   └── GatedDeltaRuleTraining.json                  # 3 representative cases
 ├── docs/
-│   ├── optimization_report.md                       # dqkwg optimization notes
+│   ├── optimization_report.md                       # fwdoport optimization notes
 │   ├── optimization_attempts.md                     # attempts / rejected directions
+│   ├── optimization_history.md                      # full optimization history
+│   ├── fwdoport_round_report.md                     # detailed fwd_o round report
 │   └── performance_comparison.md                    # 576-case comparison report
 ├── results/
 │   ├── verify_result_aclnn.json                     # 3-case precision (3/3)
-│   ├── perf_vs_aclnn.json                           # 3-case vs ACLNN (1.1379x)
-│   ├── perf_vs_puretriton.json                      # 3-case vs pure Triton (2.3151x)
+│   ├── perf_vs_aclnn.json                           # 3-case vs ACLNN (1.1541x)
+│   ├── perf_vs_puretriton.json                      # 3-case vs pure Triton (2.3396x)
 │   ├── recheck_verify.json                          # sanitized-source recheck (3/3)
-│   ├── recheck_perf_vs_aclnn.json                   # sanitized-source recheck (1.1214x)
+│   ├── recheck_perf_vs_aclnn.json                   # sanitized-source recheck (1.1489x)
 │   ├── full_flash.json                              # 576-case flash ACLNN
 │   ├── full_pure.json                               # 576-case pure Triton
 │   ├── full_g087.json                               # 576-case g087 version
-│   └── full_local_dqkwg.json                        # 576-case dqkwg version
+│   └── full_local_fwdoport.json                     # 576-case fwdoport version
 └── cases/
     └── full/GatedDeltaRuleTraining.json             # 576-case corpus
 ```
@@ -98,10 +100,21 @@ Cases:
 - `src/GatedDeltaRuleTraining.json` — 3 representative cases (1/196/540);
 - `cases/full/GatedDeltaRuleTraining.json` — 576 cases (192 shapes × 3).
 
+## Optimization points (fwd_o two-kernel split)
+
+1. New `chunk_fwd_kernel_o_gated_score_producer`: `q@kᵀ` → fp32 gate `exp(g_i−g_j)` → fp32 causal mask → whole 64×64 unmasked cast to bf16 `score` workspace.
+2. New `chunk_fwd_kernel_o_score_consumer`: `q@h` → `*exp(g)` → read `score` → `b_o*scale + dot(A,b_v)*scale` → store `o`; `RUN_CHUNKS=2` amortizes context reload over two adjacent chunks.
+3. New metadata-only route `_route_chunk_fwd_o_gated_score`; falls back to the original `chunk_fwd_kernel_o_tile_owned` on score allocation failure (original kernel kept byte-identical).
+4. Program slots for the two new kernels 24→48 (`num_vectorcore`).
+
+Single-kernel fwd_o: **1756.4 → 1356.4 us (−22.8%)**.
+
 ## Reports
 
-- [docs/optimization_report.md](docs/optimization_report.md) — dqkwg optimization points and end-to-end results.
-- [docs/optimization_attempts.md](docs/optimization_attempts.md) — adopted/reverted attempts and rejected directions.
+- [docs/optimization_report.md](docs/optimization_report.md) — fwdoport optimization points and end-to-end results.
+- [docs/optimization_attempts.md](docs/optimization_attempts.md) — adopted/reverted attempts.
+- [docs/optimization_history.md](docs/optimization_history.md) — full optimization history and failure mechanisms.
+- [docs/fwdoport_round_report.md](docs/fwdoport_round_report.md) — detailed fwd_o round evidence.
 - [docs/performance_comparison.md](docs/performance_comparison.md) — full 576-case comparison and per-case distribution.
 
 ## Precision
@@ -114,12 +127,12 @@ Cases:
 
 | File | Size | SHA256 (first 16) |
 |---|---:|---|
-| `src/GatedDeltaRuleTraining_triton_optimized.py` | 211,388 B | `5936a228988c39a9` |
+| `src/GatedDeltaRuleTraining_triton_optimized.py` | 220,254 B | `0c2e45bae06c1e08` |
 | `src/GatedDeltaRuleTraining_torch.py` | 5,167 B | `947e0f504796b624` |
 | `src/GatedDeltaRuleTraining.json` | 6,499 B | `8308f7c9f6bd49ca` |
 | `cases/full/GatedDeltaRuleTraining.json` | 1,257,720 B | `2acfc24ac6d99b04` |
 
-Optimized-source md5: `f77755ba8194116b206518946bd7cab6`.
+Optimized-source md5: `9f5754c2d637743682def2e1b44ed948`.
 
 ## License and attribution
 

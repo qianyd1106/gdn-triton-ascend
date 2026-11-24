@@ -12,165 +12,168 @@
   "negative_indices": [],
   "none_indices": [],
   "framework": {
-    "avg_latency_ms": 23.8036,
+    "avg_latency_ms": 23.8617,
     "peak_memory_mb": 3138.06,
     "operators": {
       "aclnnAdd_AddAiCore_Add": {
-        "avg_us": 361.9242
+        "avg_us": 363.2928
       },
       "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
-        "avg_us": 3722.9747
+        "avg_us": 3738.8163
       },
       "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
-        "avg_us": 627.2782
+        "avg_us": 629.3596
       },
       "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
-        "avg_us": 943.7847
+        "avg_us": 940.4395
       },
       "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
-        "avg_us": 1814.0466
+        "avg_us": 1822.7466
       },
       "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
-        "avg_us": 2262.555
+        "avg_us": 2267.9919
       },
       "aclnnInplaceCopy_CastAiCore_Cast": {
-        "avg_us": 30.8714
+        "avg_us": 28.379
       },
       "aclnnInplaceCopy_SliceAiCore_Slice": {
-        "avg_us": 192.9081
+        "avg_us": 192.1045
       },
       "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-        "avg_us": 2984.7017
+        "avg_us": 2990.2072
       },
       "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-        "avg_us": 285.322
+        "avg_us": 289.6256
       },
       "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
-        "avg_us": 1413.4655
+        "avg_us": 1410.5432
       },
       "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
-        "avg_us": 2059.4987
+        "avg_us": 2066.3131
       },
       "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
-        "avg_us": 1607.5957
+        "avg_us": 1615.0575
       },
       "chunk_local_cumsum_scalar_kernel": {
-        "avg_us": 40.7439
+        "avg_us": 39.5102
       },
       "chunk_scaled_dot_kkt_fwd_kernel": {
-        "avg_us": 499.776
+        "avg_us": 503.9429
       },
       "l2norm_bwd_kernel": {
-        "avg_us": 1047.8695
+        "avg_us": 1050.6128
       },
       "l2norm_fwd_kernel": {
-        "avg_us": 474.2449
+        "avg_us": 474.4318
       },
       "solve_tril_64x64_kernel": {
-        "avg_us": 3805.2441
+        "avg_us": 3806.541
       }
     }
   },
   "implementation": {
-    "avg_latency_ms": 21.2275,
+    "avg_latency_ms": 20.7693,
     "peak_memory_mb": 2581.82,
     "operators": {
       "_cast_dense_kernel": {
-        "avg_us": 41.3997
+        "avg_us": 42.2362
       },
       "_order_sequences_by_chunk_count_kernel": {
-        "avg_us": 11.8323
+        "avg_us": 11.8375
       },
       "_paired_l2norm_bwd_q_dk_parts_kernel": {
-        "avg_us": 882.4329
+        "avg_us": 880.301
       },
       "_paired_l2norm_fwd_kernel": {
-        "avg_us": 441.1354
+        "avg_us": 440.9477
       },
       "_sum_first_axis_kernel": {
-        "avg_us": 21.6489
+        "avg_us": 23.5837
       },
       "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-        "avg_us": 131.1876
+        "avg_us": 129.433
       },
       "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-        "avg_us": 30.7072
+        "avg_us": 31.4906
       },
       "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-        "avg_us": 4519.4281
+        "avg_us": 4517.4182
       },
-      "chunk_fwd_kernel_o_tile_owned": {
-        "avg_us": 1759.1527
+      "chunk_fwd_kernel_o_gated_score_producer": {
+        "avg_us": 461.4461
+      },
+      "chunk_fwd_kernel_o_score_consumer": {
+        "avg_us": 896.5469
       },
       "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-        "avg_us": 3794.599
+        "avg_us": 3789.8787
       },
       "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-        "avg_us": 2028.741
+        "avg_us": 2033.2354
       },
       "chunk_local_cumsum_scalar_kernel": {
-        "avg_us": 37.965
+        "avg_us": 41.1794
       },
       "chunk_scaled_dot_kkt_fwd_kernel": {
-        "avg_us": 432.2006
+        "avg_us": 433.3595
       },
       "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-        "avg_us": 2225.5826
+        "avg_us": 2230.6732
       },
       "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-        "avg_us": 2487.3082
+        "avg_us": 2489.5506
       },
       "recompute_w_u_fwd_kernel": {
-        "avg_us": 890.4126
+        "avg_us": 892.4882
       },
       "solve_tril_64x64_kernel": {
-        "avg_us": 1776.7777
+        "avg_us": 1699.826
       }
     }
   },
-  "speedup_vs_torch": 1.1214,
+  "speedup_vs_torch": 1.1489,
   "npu_preflight": {
     "status": "ready",
     "exit_code": 0,
-    "duration_ms": 15575.597,
+    "duration_ms": 7754.873,
     "visible_devices": "<device>",
     "checks": [
       {
         "name": "torch_import",
         "status": "pass",
-        "duration_ms": 1381.745
+        "duration_ms": 1076.017
       },
       {
         "name": "torch_npu_import",
         "status": "pass",
-        "duration_ms": 4900.847
+        "duration_ms": 4539.744
       },
       {
         "name": "npu_available",
         "status": "pass",
-        "duration_ms": 0.142
+        "duration_ms": 0.147
       },
       {
         "name": "device_visibility",
         "status": "pass",
-        "duration_ms": 463.495,
+        "duration_ms": 456.024,
         "device_count": 1,
         "device_index": 0
       },
       {
         "name": "memory",
         "status": "pass",
-        "duration_ms": 7852.966,
-        "free_bytes": 64821125120,
+        "duration_ms": 743.875,
+        "free_bytes": 64820887552,
         "total_bytes": 65443725312,
         "min_free_bytes": 1048576,
-        "free_mb": 61818.242,
+        "free_mb": 61818.016,
         "total_mb": 62412.0
       },
       {
         "name": "npu_smi",
         "status": "pass",
-        "duration_ms": 976.266,
+        "duration_ms": 938.926,
         "returncode": 0,
         "stdout": "NPU ID                         Chip ID                        Chip Logic ID                  Chip Name                     \n\t0                              0                              0                              Ascend 910B2C\n\t0                              1                              -                              Mcu                           \n\t1                              0                              1                              Ascend 910B2C\n\t1                              1                              -                              Mcu                           \n\t2                              0                              2                              Ascend 910B2C\n\t2                              1                              -                              Mcu                           \n\t3                              0                              3                              Ascend 910B2C\n\t3                              1                              -                              Mcu                           \n\t4                              0                              4                              Ascend 910B2C\n\t4                              1                              -                              Mcu                           \n\t5                              0                              5                              Ascend 910B2C\n\t5                              1                              -                              Mcu                           \n\t6                              0                              6                              Ascend 910B2C\n\t6                              1                              -                              Mcu                           \n\t7                              0                              7                              Ascend 910B2C\n\t7                              1                              -                              Mcu                           \n\t8                              0                              8                              Ascend 910B2C\n\t8                              1                              -                              Mcu                           \n\t9                              0                              9                              Ascend 910B2C\n\t9                              1                              -                              Mcu                           \n\t10                             0                              10                             Ascend 910B2C\n\t10                             1                              -                              Mcu                           \n\t11                             0                              11                             Ascend 910B2C\n\t11                             1                              -                              Mcu                           \n\t12                             0                              12                             Ascend 910B2C\n\t12                             1                              -                              Mcu                           \n\t13                             0                              13                             Ascend 910B2C\n\t13                             1                              -                              Mcu                           \n\t14                             0                              14                             Ascend 910B2C\n\t14                             1                              -                              Mcu                           \n\t15                             0                              15                             Ascend 910B2C\n\t15                             1                              -                              Mcu"
       }
@@ -253,158 +256,162 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 27.3643,
+        "avg_latency_ms": 27.4169,
         "peak_memory_mb": 3501.45,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 400.0502,
+            "avg_us": 398.5466,
             "launch_count": 2
           },
           "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
-            "avg_us": 4123.9229,
+            "avg_us": 4154.3001,
             "launch_count": 1
           },
           "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
-            "avg_us": 685.7673,
+            "avg_us": 686.8771,
             "launch_count": 1
           },
           "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
-            "avg_us": 1050.5988,
+            "avg_us": 1049.546,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
-            "avg_us": 2304.9251,
+            "avg_us": 2301.158,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
-            "avg_us": 2696.9591,
+            "avg_us": 2706.4523,
             "launch_count": 2
           },
           "aclnnInplaceCopy_CastAiCore_Cast": {
-            "avg_us": 31.1295,
+            "avg_us": 28.9983,
             "launch_count": 3
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 210.3471,
+            "avg_us": 206.502,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 3341.2837,
+            "avg_us": 3346.9959,
             "launch_count": 23
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 322.7177,
+            "avg_us": 326.1525,
             "launch_count": 3
           },
           "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
-            "avg_us": 1578.4234,
+            "avg_us": 1566.3774,
             "launch_count": 1
           },
           "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
-            "avg_us": 2272.7349,
+            "avg_us": 2278.8802,
             "launch_count": 1
           },
           "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
-            "avg_us": 1795.7478,
+            "avg_us": 1804.101,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 41.3458,
+            "avg_us": 40.525,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 547.13,
+            "avg_us": 549.5228,
             "launch_count": 1
           },
           "l2norm_bwd_kernel": {
-            "avg_us": 1168.3302,
+            "avg_us": 1177.225,
             "launch_count": 2
           },
           "l2norm_fwd_kernel": {
-            "avg_us": 534.6909,
+            "avg_us": 534.6472,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 4258.152,
+            "avg_us": 4260.1334,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 23.7851,
+        "avg_latency_ms": 23.294,
         "peak_memory_mb": 2920.42,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 46.326,
+            "avg_us": 46.6792,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 10.4396,
+            "avg_us": 10.2968,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 983.9497,
+            "avg_us": 979.1198,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 493.2581,
+            "avg_us": 496.6343,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 23.5734,
+            "avg_us": 25.1706,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 132.5966,
+            "avg_us": 131.5438,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 34.0152,
+            "avg_us": 34.5557,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 4985.5689,
+            "avg_us": 4980.6875,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1947.1028,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 505.7949,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 994.0594,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 4195.3745,
+            "avg_us": 4197.8507,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 2239.0816,
+            "avg_us": 2244.597,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 40.9837,
+            "avg_us": 43.4433,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 478.0915,
+            "avg_us": 478.9163,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 2463.8845,
+            "avg_us": 2471.62,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 2751.4144,
+            "avg_us": 2755.1938,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 983.8405,
+            "avg_us": 988.0232,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1975.571,
+            "avg_us": 1909.7672,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 1.1505,
+      "speedup_vs_torch": 1.177,
       "error_type": null,
       "error_msg": null
     },
@@ -483,158 +490,162 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 18.4597,
+        "avg_latency_ms": 18.5307,
         "peak_memory_mb": 2408.51,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 284.4044,
+            "avg_us": 287.7792,
             "launch_count": 2
           },
           "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
-            "avg_us": 2912.2376,
+            "avg_us": 2919.6464,
             "launch_count": 1
           },
           "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
-            "avg_us": 512.1925,
+            "avg_us": 509.4323,
             "launch_count": 1
           },
           "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
-            "avg_us": 740.7713,
+            "avg_us": 741.6765,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
-            "avg_us": 1234.9354,
+            "avg_us": 1248.9682,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
-            "avg_us": 1612.6732,
+            "avg_us": 1614.9452,
             "launch_count": 2
           },
           "aclnnInplaceCopy_CastAiCore_Cast": {
-            "avg_us": 30.1173,
+            "avg_us": 27.9327,
             "launch_count": 3
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 160.2706,
+            "avg_us": 162.3806,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 2269.1346,
+            "avg_us": 2281.4765,
             "launch_count": 23
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 211.3869,
+            "avg_us": 218.1634,
             "launch_count": 3
           },
           "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
-            "avg_us": 1111.5336,
+            "avg_us": 1115.2043,
             "launch_count": 1
           },
           "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
-            "avg_us": 1642.1898,
+            "avg_us": 1648.784,
             "launch_count": 1
           },
           "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
-            "avg_us": 1233.6291,
+            "avg_us": 1244.628,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 32.89,
+            "avg_us": 37.2112,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 404.5357,
+            "avg_us": 406.7756,
             "launch_count": 1
           },
           "l2norm_bwd_kernel": {
-            "avg_us": 801.1859,
+            "avg_us": 801.6758,
             "launch_count": 2
           },
           "l2norm_fwd_kernel": {
-            "avg_us": 359.6706,
+            "avg_us": 357.9407,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 2905.986,
+            "avg_us": 2906.0792,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 16.7654,
+        "avg_latency_ms": 16.4227,
         "peak_memory_mb": 1964.25,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 33.0516,
+            "avg_us": 34.0005,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 14.3653,
+            "avg_us": 14.3369,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 680.3782,
+            "avg_us": 679.9494,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 335.955,
+            "avg_us": 336.1498,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 17.6182,
+            "avg_us": 19.907,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 125.9415,
+            "avg_us": 125.099,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 25.937,
+            "avg_us": 26.6214,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 3574.5293,
+            "avg_us": 3576.7381,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1367.1803,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 373.327,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 697.4676,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 2941.4268,
+            "avg_us": 2934.1098,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 1550.6576,
+            "avg_us": 1554.3865,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 31.95,
+            "avg_us": 35.6208,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 338.94,
+            "avg_us": 340.8281,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 1730.1728,
+            "avg_us": 1731.9812,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 1940.7768,
+            "avg_us": 1940.0316,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 693.9183,
+            "avg_us": 695.4927,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1362.5996,
+            "avg_us": 1306.6494,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 1.1011,
+      "speedup_vs_torch": 1.1284,
       "error_type": null,
       "error_msg": null
     },
@@ -713,158 +724,162 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 26.7004,
+        "avg_latency_ms": 26.7421,
         "peak_memory_mb": 3504.21,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 401.318,
+            "avg_us": 403.5526,
             "launch_count": 2
           },
           "aclnnChunkBwdDqkwg_ChunkBwdDqkwg_ChunkBwdDqkwg": {
-            "avg_us": 4132.7637,
+            "avg_us": 4142.5024,
             "launch_count": 1
           },
           "aclnnChunkBwdDvLocal_ChunkBwdDvLocal_ChunkBwdDvLocal": {
-            "avg_us": 683.8748,
+            "avg_us": 691.7694,
             "launch_count": 1
           },
           "aclnnChunkFwdO_ChunkFwdO_ChunkFwdO": {
-            "avg_us": 1039.9839,
+            "avg_us": 1030.0958,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu_ChunkGatedDeltaRuleBwdDhu": {
-            "avg_us": 1902.2792,
+            "avg_us": 1918.1135,
             "launch_count": 1
           },
           "aclnnChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH_ChunkGatedDeltaRuleFwdH": {
-            "avg_us": 2478.0326,
+            "avg_us": 2482.5783,
             "launch_count": 2
           },
           "aclnnInplaceCopy_CastAiCore_Cast": {
-            "avg_us": 31.3674,
+            "avg_us": 28.206,
             "launch_count": 3
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 208.1066,
+            "avg_us": 207.4309,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 3343.6869,
+            "avg_us": 3342.1491,
             "launch_count": 23
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 321.8615,
+            "avg_us": 324.561,
             "launch_count": 3
           },
           "aclnnPrepareWyReprBwdDa_PrepareWyReprBwdDa_PrepareWyReprBwdDa": {
-            "avg_us": 1550.4396,
+            "avg_us": 1550.0479,
             "launch_count": 1
           },
           "aclnnPrepareWyReprBwdFull_PrepareWyReprBwdFull_PrepareWyReprBwdFull": {
-            "avg_us": 2263.5713,
+            "avg_us": 2271.2752,
             "launch_count": 1
           },
           "aclnnRecomputeWUFwd_RecomputeWUFwd_RecomputeWUFwd": {
-            "avg_us": 1793.4103,
+            "avg_us": 1796.4436,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 47.996,
+            "avg_us": 40.7945,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 547.6624,
+            "avg_us": 555.5301,
             "launch_count": 1
           },
           "l2norm_bwd_kernel": {
-            "avg_us": 1174.0925,
+            "avg_us": 1172.9376,
             "launch_count": 2
           },
           "l2norm_fwd_kernel": {
-            "avg_us": 528.3732,
+            "avg_us": 530.7074,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 4251.5944,
+            "avg_us": 4253.4104,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 23.9871,
+        "avg_latency_ms": 23.4196,
         "peak_memory_mb": 2860.8,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 44.8216,
+            "avg_us": 46.0288,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 10.692,
+            "avg_us": 10.8788,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 982.9707,
+            "avg_us": 981.8339,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 494.193,
+            "avg_us": 490.0591,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 23.755,
+            "avg_us": 25.6734,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 135.0247,
+            "avg_us": 131.6563,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 32.1694,
+            "avg_us": 33.2947,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 4998.1862,
+            "avg_us": 4994.8289,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1963.175,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 505.2165,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 998.1136,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 4246.9958,
+            "avg_us": 4237.6758,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 2296.4839,
+            "avg_us": 2300.7228,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 40.9613,
+            "avg_us": 44.4742,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 479.5703,
+            "avg_us": 480.3342,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 2482.6904,
+            "avg_us": 2488.4183,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 2769.7333,
+            "avg_us": 2773.4265,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 993.479,
+            "avg_us": 993.9487,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1992.1625,
+            "avg_us": 1883.0613,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 1.1131,
+      "speedup_vs_torch": 1.1419,
       "error_type": null,
       "error_msg": null
     }

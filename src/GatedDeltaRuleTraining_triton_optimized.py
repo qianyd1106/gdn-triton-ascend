@@ -4356,6 +4356,177 @@ def chunk_fwd_kernel_o_tile_owned(
         task += stride
 
 
+# #17: split only at the existing gated/masked BF16 AV-input boundary.
+# Both stages retain the parent's cyclic chunk/head ownership and 64/128/128 tiles.
+@triton.jit(do_not_specialize=['T'])
+def chunk_fwd_kernel_o_gated_score_producer(
+    q, k, g, score, cu_seqlens, chunk_indices, T,
+    H: tl.constexpr, Hg: tl.constexpr, K: tl.constexpr,
+    BT: tl.constexpr, BK: tl.constexpr, BV: tl.constexpr, NT_TOTAL: tl.constexpr,
+):
+    pid = tl.program_id(0)
+    stride = tl.num_programs(0)
+    task = pid
+    while task < NT_TOTAL * H:
+        chunk_linear = task // H
+        i_h = task - chunk_linear * H
+        i_n = tl.load(chunk_indices + chunk_linear * 2).to(tl.int32)
+        i_t = tl.load(chunk_indices + chunk_linear * 2 + 1).to(tl.int32)
+        bos, eos = tl.load(cu_seqlens + i_n).to(tl.int32), tl.load(
+            cu_seqlens + i_n + 1
+        ).to(tl.int32)
+        T_seq = eos - bos
+        NT_seq = tl.cdiv(T_seq, BT)
+        # Initialize every task, including any invalid metadata tile, in this call.
+        b_A = tl.zeros([BT, BT], dtype=tl.float32)
+        if i_t < NT_seq:
+            q_offset = (bos * Hg + i_h // (H // Hg)) * K
+            k_offset = (bos * Hg + i_h // (H // Hg)) * K
+            for i_k in range(tl.cdiv(K, BK)):
+                p_q = tl.make_block_ptr(
+                    q + q_offset, (T_seq, K), (Hg * K, 1), (i_t * BT, i_k * BK), (BT, BK), (1, 0)
+                )
+                p_k = tl.make_block_ptr(
+                    k + k_offset, (K, T_seq), (1, Hg * K), (i_k * BK, i_t * BT), (BK, BT), (0, 1)
+                )
+                b_q = tl.load(p_q, boundary_check=(0, 1))
+                b_k = tl.load(p_k, boundary_check=(0, 1))
+                b_A += tl.dot(b_q, b_k)
+            p_g = tl.make_block_ptr(g + bos + i_h * T, (T_seq,), (1,), (i_t * BT,), (BT,), (0,))
+            b_g = tl.load(p_g, boundary_check=(0,))
+            b_A = b_A * exp(b_g[:, None] - b_g[None, :])
+            o_i = tl.arange(0, BT)
+            m_A = o_i[:, None] >= o_i[None, :]
+            b_A = tl.where(m_A, b_A, 0)
+        # Full 64x64 store, NOT a triangular/tail-masked store. Tail math is original.
+        p_score = tl.make_block_ptr(
+            score + task * BT * BT, (BT, BT), (BT, 1), (0, 0), (BT, BT), (1, 0)
+        )
+        tl.store(p_score, b_A.to(p_score.dtype.element_ty))
+        task += stride
+
+
+@triton.jit(do_not_specialize=['T'])
+def chunk_fwd_kernel_o_score_consumer(
+    q, v, h, g, score, o, cu_seqlens, chunk_offsets, chunk_indices, scale, T,
+    H: tl.constexpr, Hg: tl.constexpr, K: tl.constexpr, V: tl.constexpr,
+    BT: tl.constexpr, BK: tl.constexpr, BV: tl.constexpr, NT_TOTAL: tl.constexpr,
+    RUN_CHUNKS: tl.constexpr,
+):
+    pid = tl.program_id(0)
+    stride = tl.num_programs(0)
+    run_task = pid
+    # Same physical workers; each logical run owns adjacent actual chunks of one head.
+    TOTAL_RUN_TASKS: tl.constexpr = ((NT_TOTAL + RUN_CHUNKS - 1) // RUN_CHUNKS) * H
+    while run_task < TOTAL_RUN_TASKS:
+        pair_index = run_task // H
+        i_h = run_task - pair_index * H
+        first_actual = pair_index * RUN_CHUNKS
+        i_v = 0  # Qualification fixes V == BV == 128, as in the parent path.
+        context_n = tl.full((), -1, tl.int32)
+        bos = tl.full((), 0, tl.int32)
+        T_seq = tl.full((), 0, tl.int32)
+        NT_seq = tl.full((), 0, tl.int32)
+        boh = tl.full((), 0, tl.int64)  # Preserve parent's wide saved-H addressing.
+        q_offset = tl.full((), 0, tl.int32)
+        o_offset = tl.full((), 0, tl.int32)
+        v_base = v
+        for slot in tl.static_range(RUN_CHUNKS):
+            chunk_linear = first_actual + slot
+            # Guard the odd final slot before either chunk_indices load.
+            if chunk_linear < NT_TOTAL:
+                i_n = tl.load(chunk_indices + chunk_linear * 2).to(tl.int32)
+                i_t = tl.load(chunk_indices + chunk_linear * 2 + 1).to(tl.int32)
+                # Slot zero initializes context. Crossing sequences reloads every base.
+                if (slot == 0) | (i_n != context_n):
+                    bos, eos = tl.load(cu_seqlens + i_n).to(tl.int32), tl.load(
+                        cu_seqlens + i_n + 1
+                    ).to(tl.int32)
+                    T_seq = eos - bos
+                    NT_seq = tl.cdiv(T_seq, BT)
+                    boh = tl.load(chunk_offsets + i_n).to(tl.int64)
+                    q_offset = (bos * Hg + i_h // (H // Hg)) * K
+                    o_offset = (bos * H + i_h) * V
+                    v_base = v + (i_h * T + bos) * V
+                    context_n = i_n
+                if i_t < NT_seq:
+                    i_tg = boh + i_t
+                    h_base = h + (i_h * NT_TOTAL + i_tg).to(tl.int64) * K * V
+                    v_stride = V
+                    # No numerical state is reused between chunks.
+                    b_o = tl.zeros([BT, BV], dtype=tl.float32)
+                    for i_k in range(tl.cdiv(K, BK)):
+                        p_q = tl.make_block_ptr(
+                            q + q_offset, (T_seq, K), (Hg * K, 1), (i_t * BT, i_k * BK), (BT, BK), (1, 0)
+                        )
+                        p_h = tl.make_block_ptr(
+                            h_base, (K, V), (V, 1), (i_k * BK, i_v * BV), (BK, BV), (1, 0)
+                        )
+                        b_q = tl.load(p_q, boundary_check=(0, 1))
+                        b_h = tl.load(p_h, boundary_check=(0, 1))
+                        b_o += tl.dot(b_q, b_h)
+                    p_g = tl.make_block_ptr(g + bos + i_h * T, (T_seq,), (1,), (i_t * BT,), (BT,), (0,))
+                    b_g = tl.load(p_g, boundary_check=(0,))
+                    b_o = b_o * exp(b_g)[:, None]
+                    score_actual_task = chunk_linear * H + i_h
+                    p_score = tl.make_block_ptr(
+                        score + score_actual_task * BT * BT, (BT, BT), (BT, 1), (0, 0), (BT, BT), (1, 0)
+                    )
+                    b_A = tl.load(p_score)
+                    p_v = tl.make_block_ptr(
+                        v_base, (T_seq, V), (v_stride, 1), (i_t * BT, i_v * BV), (BT, BV), (1, 0)
+                    )
+                    p_o = tl.make_block_ptr(
+                        o + o_offset, (T_seq, V), (H * V, 1), (i_t * BT, i_v * BV), (BT, BV), (1, 0)
+                    )
+                    b_v = tl.load(p_v, boundary_check=(0, 1))
+                    b_o = b_o * scale + tl.dot(b_A.to(b_v.dtype), b_v) * scale
+                    tl.store(p_o, b_o.to(p_o.dtype.element_ty), boundary_check=(0, 1))
+        run_task += stride
+
+
+def _route_chunk_fwd_o_gated_score(
+    q, k, v, h, g, g_gamma, o, cu_seqlens, chunk_offsets, chunk_indices,
+    scale, T, H, Hg, K, V, BT, BK, BV, NT, grid_x, workspace_native_layout,
+):
+    # Metadata-only qualification: no case IDs, exact T, seeds or tensor values.
+    split_forward_o_gated_score = (
+        workspace_native_layout and g_gamma is None
+        and BT == 64 and BK == 128 and BV == 128 and K == 128 and V == 128
+        and NT * H >= 2 * grid_x
+        and all(x.dtype == torch.bfloat16 for x in (q, k, v, h))
+        and g.dtype == torch.float32
+        and q.device.type == 'npu'
+        and all(x.device == q.device for x in (k, v, h, g, o, cu_seqlens, chunk_offsets, chunk_indices))
+        and all(x.is_contiguous() for x in (q, k, v, h, g, cu_seqlens, chunk_offsets, chunk_indices))
+        and tuple(q.shape) == (1, T, Hg, K) and tuple(k.shape) == tuple(q.shape)
+        and tuple(v.shape) == (1, H, T, V)
+        and tuple(h.shape) == (1, H, NT, K, V)
+        and tuple(g.shape) == (1, H, T)
+        and tuple(chunk_indices.shape) == (NT, 2)
+    )
+    if not split_forward_o_gated_score:
+        return False
+    try:
+        score = torch.empty((NT, H, BT, BT), dtype=v.dtype, device=v.device)
+    except (torch.OutOfMemoryError, MemoryError):
+        return False  # Only allocation failure; compile/runtime failures remain visible.
+    # [opt point 3 / 分核优化] num_aicore=24 but num_vectorcore=48: these two stages are
+    # vector/scalar-heavy around 1-2 dots, so give them 2x program slots (persistent
+    # stride loop, so task count is unchanged; only the number of parallel slots grows).
+    prog = min(2 * grid_x, NT * H)
+    chunk_fwd_kernel_o_gated_score_producer[(prog,)](
+        q, k, g, score, cu_seqlens, chunk_indices, T=T,
+        H=H, Hg=Hg, K=K, BT=BT, BK=BK, BV=BV, NT_TOTAL=NT,
+    )
+    chunk_fwd_kernel_o_score_consumer[(prog,)](
+        q, v, h, g, score, o, cu_seqlens, chunk_offsets, chunk_indices, scale, T=T,
+        H=H, Hg=Hg, K=K, V=V, BT=BT, BK=BK, BV=BV, NT_TOTAL=NT,
+        RUN_CHUNKS=2,
+    )
+    return True
+
+
 def chunk_bwd_dqkwg(
     q: torch.Tensor,
     k: torch.Tensor,
@@ -4595,6 +4766,11 @@ def chunk_fwd_o(
         max_nt = triton.cdiv(T, BT)
         total_tiles = triton.cdiv(V, BV) * H * NT
         grid_x = max(1, min(total_tiles, _get_npu_aicore_num(total_tiles)))
+        if _route_chunk_fwd_o_gated_score(
+            q, k, v, h, g, g_gamma, o, cu_seqlens, chunk_offsets, chunk_indices,
+            scale, T, H, Hg, K, V, BT, BK, BV, NT, grid_x, workspace_native_layout,
+        ):
+            return o
         chunk_fwd_kernel_o_tile_owned[(grid_x,)](
             q,
             k,

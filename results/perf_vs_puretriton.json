@@ -12,174 +12,177 @@
   "negative_indices": [],
   "none_indices": [],
   "framework": {
-    "avg_latency_ms": 48.738,
+    "avg_latency_ms": 48.7212,
     "peak_memory_mb": 2789.76,
     "operators": {
       "aclnnAdd_AddAiCore_Add": {
-        "avg_us": 1441.9073
+        "avg_us": 1462.3563
       },
       "aclnnAdds_AddAiCore_Add": {
-        "avg_us": 18.8373
+        "avg_us": 17.6417
       },
       "aclnnInplaceCopy_SliceAiCore_Slice": {
-        "avg_us": 195.5232
+        "avg_us": 194.8618
       },
       "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-        "avg_us": 4277.7152
+        "avg_us": 4265.2296
       },
       "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-        "avg_us": 33.3677
+        "avg_us": 33.0612
       },
       "aclnnMul_BroadcastToAiCore_BroadcastTo": {
-        "avg_us": 206.7587
+        "avg_us": 208.6987
       },
       "aclnnMul_MulAiCore_Mul": {
-        "avg_us": 3219.4653
+        "avg_us": 3213.8582
       },
       "aclnnMuls_Muls_Muls": {
-        "avg_us": 16.449
+        "avg_us": 16.4449
       },
       "aclnnPowTensorScalar_PowsAiCore_Pows": {
-        "avg_us": 30.2655
+        "avg_us": 27.6519
       },
       "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
-        "avg_us": 440.8202
+        "avg_us": 431.5801
       },
       "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
-        "avg_us": 20.7509
+        "avg_us": 16.1625
       },
       "chunk_bwd_kernel_dqkwg": {
-        "avg_us": 12016.5298
+        "avg_us": 12019.0732
       },
       "chunk_bwd_kernel_dv_local": {
-        "avg_us": 967.5874
+        "avg_us": 963.1111
       },
       "chunk_fwd_kernel_o": {
-        "avg_us": 2421.7628
+        "avg_us": 2415.994
       },
       "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-        "avg_us": 4922.5254
+        "avg_us": 4922.9581
       },
       "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
-        "avg_us": 7614.0783
+        "avg_us": 7597.7236
       },
       "chunk_local_cumsum_scalar_kernel": {
-        "avg_us": 36.621
+        "avg_us": 36.8855
       },
       "chunk_scaled_dot_kkt_fwd_kernel": {
-        "avg_us": 500.6273
+        "avg_us": 502.768
       },
       "prepare_wy_repr_bwd_kernel": {
-        "avg_us": 5463.0984
+        "avg_us": 5478.8897
       },
       "recompute_w_u_fwd_kernel": {
-        "avg_us": 1774.1542
+        "avg_us": 1770.0466
       },
       "solve_tril_64x64_kernel": {
-        "avg_us": 3802.9993
+        "avg_us": 3802.5027
       }
     }
   },
   "implementation": {
-    "avg_latency_ms": 21.0521,
+    "avg_latency_ms": 20.8249,
     "peak_memory_mb": 2579.83,
     "operators": {
       "_cast_dense_kernel": {
-        "avg_us": 40.6039
+        "avg_us": 40.9919
       },
       "_order_sequences_by_chunk_count_kernel": {
-        "avg_us": 11.9667
+        "avg_us": 11.9494
       },
       "_paired_l2norm_bwd_q_dk_parts_kernel": {
-        "avg_us": 880.8278
+        "avg_us": 881.0644
       },
       "_paired_l2norm_fwd_kernel": {
-        "avg_us": 435.514
+        "avg_us": 437.8508
       },
       "_sum_first_axis_kernel": {
-        "avg_us": 23.5256
+        "avg_us": 22.8637
       },
       "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-        "avg_us": 131.2186
+        "avg_us": 129.9972
       },
       "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-        "avg_us": 32.1999
+        "avg_us": 31.6952
       },
       "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-        "avg_us": 4517.0527
+        "avg_us": 4510.4436
       },
-      "chunk_fwd_kernel_o_tile_owned": {
-        "avg_us": 1757.3777
+      "chunk_fwd_kernel_o_gated_score_producer": {
+        "avg_us": 458.8316
+      },
+      "chunk_fwd_kernel_o_score_consumer": {
+        "avg_us": 897.2172
       },
       "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-        "avg_us": 3813.0538
+        "avg_us": 3805.5548
       },
       "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-        "avg_us": 2027.5803
+        "avg_us": 2030.1798
       },
       "chunk_local_cumsum_scalar_kernel": {
-        "avg_us": 37.3331
+        "avg_us": 39.1337
       },
       "chunk_scaled_dot_kkt_fwd_kernel": {
-        "avg_us": 431.7132
+        "avg_us": 431.1272
       },
       "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-        "avg_us": 2220.3041
+        "avg_us": 2227.4517
       },
       "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-        "avg_us": 2483.6032
+        "avg_us": 2488.5115
       },
       "recompute_w_u_fwd_kernel": {
-        "avg_us": 890.7417
+        "avg_us": 893.2965
       },
       "solve_tril_64x64_kernel": {
-        "avg_us": 1602.5648
+        "avg_us": 1769.9161
       }
     }
   },
-  "speedup_vs_torch": 2.3151,
+  "speedup_vs_torch": 2.3396,
   "npu_preflight": {
     "status": "ready",
     "exit_code": 0,
-    "duration_ms": 16204.445,
+    "duration_ms": 15420.794,
     "visible_devices": "<device>",
     "checks": [
       {
         "name": "torch_import",
         "status": "pass",
-        "duration_ms": 1722.387
+        "duration_ms": 1250.911
       },
       {
         "name": "torch_npu_import",
         "status": "pass",
-        "duration_ms": 5341.023
+        "duration_ms": 4916.174
       },
       {
         "name": "npu_available",
         "status": "pass",
-        "duration_ms": 0.143
+        "duration_ms": 0.133
       },
       {
         "name": "device_visibility",
         "status": "pass",
-        "duration_ms": 533.827,
+        "duration_ms": 427.089,
         "device_count": 1,
         "device_index": 0
       },
       {
         "name": "memory",
         "status": "pass",
-        "duration_ms": 7904.128,
-        "free_bytes": 64803147776,
+        "duration_ms": 7890.031,
+        "free_bytes": 64813019136,
         "total_bytes": 65442938880,
         "min_free_bytes": 1048576,
-        "free_mb": 61801.098,
+        "free_mb": 61810.512,
         "total_mb": 62411.25
       },
       {
         "name": "npu_smi",
         "status": "pass",
-        "duration_ms": 702.726,
+        "duration_ms": 936.337,
         "returncode": 0,
         "stdout": "NPU ID                         Chip ID                        Chip Logic ID                  Chip Name                     \n\t0                              0                              0                              Ascend 910B2C\n\t0                              1                              -                              Mcu                           \n\t1                              0                              1                              Ascend 910B2C\n\t1                              1                              -                              Mcu                           \n\t2                              0                              2                              Ascend 910B2C\n\t2                              1                              -                              Mcu                           \n\t3                              0                              3                              Ascend 910B2C\n\t3                              1                              -                              Mcu                           \n\t4                              0                              4                              Ascend 910B2C\n\t4                              1                              -                              Mcu                           \n\t5                              0                              5                              Ascend 910B2C\n\t5                              1                              -                              Mcu                           \n\t6                              0                              6                              Ascend 910B2C\n\t6                              1                              -                              Mcu                           \n\t7                              0                              7                              Ascend 910B2C\n\t7                              1                              -                              Mcu                           \n\t8                              0                              8                              Ascend 910B2C\n\t8                              1                              -                              Mcu                           \n\t9                              0                              9                              Ascend 910B2C\n\t9                              1                              -                              Mcu                           \n\t10                             0                              10                             Ascend 910B2C\n\t10                             1                              -                              Mcu                           \n\t11                             0                              11                             Ascend 910B2C\n\t11                             1                              -                              Mcu                           \n\t12                             0                              12                             Ascend 910B2C\n\t12                             1                              -                              Mcu                           \n\t13                             0                              13                             Ascend 910B2C\n\t13                             1                              -                              Mcu                           \n\t14                             0                              14                             Ascend 910B2C\n\t14                             1                              -                              Mcu                           \n\t15                             0                              15                             Ascend 910B2C\n\t15                             1                              -                              Mcu"
       }
@@ -262,170 +265,174 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 55.2903,
+        "avg_latency_ms": 55.3645,
         "peak_memory_mb": 3060.33,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 1732.2534,
+            "avg_us": 1758.2702,
             "launch_count": 6
           },
           "aclnnAdds_AddAiCore_Add": {
-            "avg_us": 18.7886,
+            "avg_us": 18.0585,
             "launch_count": 2
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 216.5468,
+            "avg_us": 214.3046,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 4763.2346,
+            "avg_us": 4749.5741,
             "launch_count": 31
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 33.9551,
+            "avg_us": 33.9671,
             "launch_count": 1
           },
           "aclnnMul_BroadcastToAiCore_BroadcastTo": {
-            "avg_us": 214.76,
+            "avg_us": 217.2141,
             "launch_count": 4
           },
           "aclnnMul_MulAiCore_Mul": {
-            "avg_us": 3680.4189,
+            "avg_us": 3693.6623,
             "launch_count": 14
           },
           "aclnnMuls_Muls_Muls": {
-            "avg_us": 16.5943,
+            "avg_us": 16.5343,
             "launch_count": 2
           },
           "aclnnPowTensorScalar_PowsAiCore_Pows": {
-            "avg_us": 30.2735,
+            "avg_us": 27.8912,
             "launch_count": 2
           },
           "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
-            "avg_us": 451.3161,
+            "avg_us": 439.8461,
             "launch_count": 5
           },
           "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
-            "avg_us": 20.8087,
+            "avg_us": 16.3347,
             "launch_count": 2
           },
           "chunk_bwd_kernel_dqkwg": {
-            "avg_us": 13308.0281,
+            "avg_us": 13318.5865,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dv_local": {
-            "avg_us": 1073.599,
+            "avg_us": 1072.415,
             "launch_count": 1
           },
           "chunk_fwd_kernel_o": {
-            "avg_us": 2418.0926,
+            "avg_us": 2410.2804,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 5685.7112,
+            "avg_us": 5736.1733,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
-            "avg_us": 8810.1822,
+            "avg_us": 8787.4113,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 39.3157,
+            "avg_us": 39.4395,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 548.524,
+            "avg_us": 552.48,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_kernel": {
-            "avg_us": 6004.076,
+            "avg_us": 6047.3797,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 1967.9845,
+            "avg_us": 1959.5682,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 4255.872,
+            "avg_us": 4255.088,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 23.6197,
+        "avg_latency_ms": 23.3635,
         "peak_memory_mb": 2920.01,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 45.376,
+            "avg_us": 46.418,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 10.522,
+            "avg_us": 10.7,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 985.4852,
+            "avg_us": 985.2312,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 491.5795,
+            "avg_us": 490.0656,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 25.527,
+            "avg_us": 24.817,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 132.9187,
+            "avg_us": 132.2128,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 33.5812,
+            "avg_us": 33.8012,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 4978.8892,
+            "avg_us": 4974.995,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1948.53,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 507.05,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 993.1817,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 4219.1267,
+            "avg_us": 4215.7566,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 2236.9413,
+            "avg_us": 2241.4375,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 40.2518,
+            "avg_us": 42.0519,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 479.8971,
+            "avg_us": 478.6712,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 2456.9642,
+            "avg_us": 2466.1345,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 2762.0263,
+            "avg_us": 2752.1,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 985.8532,
+            "avg_us": 995.4019,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1786.2355,
+            "avg_us": 1973.4988,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 2.3409,
+      "speedup_vs_torch": 2.3697,
       "error_type": null,
       "error_msg": null
     },
@@ -504,170 +511,174 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 38.2894,
+        "avg_latency_ms": 38.3308,
         "peak_memory_mb": 2317.46,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 893.754,
+            "avg_us": 922.1249,
             "launch_count": 6
           },
           "aclnnAdds_AddAiCore_Add": {
-            "avg_us": 18.6529,
+            "avg_us": 17.2863,
             "launch_count": 2
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 153.456,
+            "avg_us": 151.578,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 3325.4431,
+            "avg_us": 3319.5067,
             "launch_count": 31
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 31.141,
+            "avg_us": 29.455,
             "launch_count": 1
           },
           "aclnnMul_BroadcastToAiCore_BroadcastTo": {
-            "avg_us": 192.8241,
+            "avg_us": 193.9081,
             "launch_count": 4
           },
           "aclnnMul_MulAiCore_Mul": {
-            "avg_us": 2276.9412,
+            "avg_us": 2273.2484,
             "launch_count": 14
           },
           "aclnnMuls_Muls_Muls": {
-            "avg_us": 16.2544,
+            "avg_us": 16.3822,
             "launch_count": 2
           },
           "aclnnPowTensorScalar_PowsAiCore_Pows": {
-            "avg_us": 30.3693,
+            "avg_us": 27.6953,
             "launch_count": 2
           },
           "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
-            "avg_us": 409.6305,
+            "avg_us": 402.866,
             "launch_count": 5
           },
           "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
-            "avg_us": 20.4367,
+            "avg_us": 15.8443,
             "launch_count": 2
           },
           "chunk_bwd_kernel_dqkwg": {
-            "avg_us": 9310.5222,
+            "avg_us": 9325.4127,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dv_local": {
-            "avg_us": 766.8727,
+            "avg_us": 759.1581,
             "launch_count": 1
           },
           "chunk_fwd_kernel_o": {
-            "avg_us": 2145.5158,
+            "avg_us": 2164.0005,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 3772.5767,
+            "avg_us": 3770.1948,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
-            "avg_us": 5846.7618,
+            "avg_us": 5851.0636,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 30.7115,
+            "avg_us": 31.0877,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 404.518,
+            "avg_us": 406.1641,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_kernel": {
-            "avg_us": 4361.6803,
+            "avg_us": 4379.7372,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 1379.1792,
+            "avg_us": 1373.5749,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 2902.192,
+            "avg_us": 2900.524,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 16.6095,
+        "avg_latency_ms": 16.4221,
         "peak_memory_mb": 1959.82,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 32.5057,
+            "avg_us": 32.1377,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 14.4481,
+            "avg_us": 14.5463,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 676.4671,
+            "avg_us": 679.9471,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 329.7772,
+            "avg_us": 330.4591,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 19.8629,
+            "avg_us": 19.169,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 126.7304,
+            "avg_us": 122.7401,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 29.055,
+            "avg_us": 27.985,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 3564.5407,
+            "avg_us": 3557.8061,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1361.8486,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 368.6909,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 698.8539,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 2953.254,
+            "avg_us": 2948.2157,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 1550.9941,
+            "avg_us": 1556.1321,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 31.4816,
+            "avg_us": 33.0253,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 336.8715,
+            "avg_us": 336.5652,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 1727.799,
+            "avg_us": 1733.6634,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 1932.0193,
+            "avg_us": 1935.9475,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 694.692,
+            "avg_us": 693.5959,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1227.139,
+            "avg_us": 1332.5734,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 2.3053,
+      "speedup_vs_torch": 2.3341,
       "error_type": null,
       "error_msg": null
     },
@@ -746,170 +757,174 @@
       ],
       "status": "pass",
       "framework": {
-        "avg_latency_ms": 54.6858,
+        "avg_latency_ms": 54.4972,
         "peak_memory_mb": 2991.49,
         "operators": {
           "aclnnAdd_AddAiCore_Add": {
-            "avg_us": 1699.7144,
+            "avg_us": 1706.6738,
             "launch_count": 6
           },
           "aclnnAdds_AddAiCore_Add": {
-            "avg_us": 19.0705,
+            "avg_us": 17.5802,
             "launch_count": 2
           },
           "aclnnInplaceCopy_SliceAiCore_Slice": {
-            "avg_us": 216.5668,
+            "avg_us": 218.7029,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 4744.4679,
+            "avg_us": 4726.608,
             "launch_count": 31
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 35.0071,
+            "avg_us": 35.7615,
             "launch_count": 1
           },
           "aclnnMul_BroadcastToAiCore_BroadcastTo": {
-            "avg_us": 212.692,
+            "avg_us": 214.974,
             "launch_count": 4
           },
           "aclnnMul_MulAiCore_Mul": {
-            "avg_us": 3701.0359,
+            "avg_us": 3674.6638,
             "launch_count": 14
           },
           "aclnnMuls_Muls_Muls": {
-            "avg_us": 16.4983,
+            "avg_us": 16.4183,
             "launch_count": 2
           },
           "aclnnPowTensorScalar_PowsAiCore_Pows": {
-            "avg_us": 30.1537,
+            "avg_us": 27.3693,
             "launch_count": 2
           },
           "aclnnReduceSum_ReduceSumOpAiCore_ReduceSum": {
-            "avg_us": 461.514,
+            "avg_us": 452.0282,
             "launch_count": 5
           },
           "aclnnRsqrt_RsqrtAiCore_Rsqrt": {
-            "avg_us": 21.0072,
+            "avg_us": 16.3084,
             "launch_count": 2
           },
           "chunk_bwd_kernel_dqkwg": {
-            "avg_us": 13431.039,
+            "avg_us": 13413.2205,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dv_local": {
-            "avg_us": 1062.2904,
+            "avg_us": 1057.7603,
             "launch_count": 1
           },
           "chunk_fwd_kernel_o": {
-            "avg_us": 2701.68,
+            "avg_us": 2673.701,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 5309.2883,
+            "avg_us": 5262.5063,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_blockdim64": {
-            "avg_us": 8185.291,
+            "avg_us": 8154.6959,
             "launch_count": 2
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 39.8357,
+            "avg_us": 40.1293,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 548.84,
+            "avg_us": 549.66,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_kernel": {
-            "avg_us": 6023.5388,
+            "avg_us": 6009.5523,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 1975.299,
+            "avg_us": 1976.9968,
             "launch_count": 2
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 4250.934,
+            "avg_us": 4251.896,
             "launch_count": 1
           }
         }
       },
       "implementation": {
-        "avg_latency_ms": 23.7824,
+        "avg_latency_ms": 23.5387,
         "peak_memory_mb": 2859.65,
         "operators": {
           "_cast_dense_kernel": {
-            "avg_us": 43.93,
+            "avg_us": 44.42,
             "launch_count": 2
           },
           "_order_sequences_by_chunk_count_kernel": {
-            "avg_us": 10.93,
+            "avg_us": 10.602,
             "launch_count": 2
           },
           "_paired_l2norm_bwd_q_dk_parts_kernel": {
-            "avg_us": 980.531,
+            "avg_us": 978.015,
             "launch_count": 1
           },
           "_paired_l2norm_fwd_kernel": {
-            "avg_us": 485.1853,
+            "avg_us": 493.0277,
             "launch_count": 1
           },
           "_sum_first_axis_kernel": {
-            "avg_us": 25.187,
+            "avg_us": 24.605,
             "launch_count": 1
           },
           "aclnnInplaceCopy_TransposeAiCore_Transpose": {
-            "avg_us": 134.0068,
+            "avg_us": 135.0386,
             "launch_count": 7
           },
           "aclnnInplaceZero_ZerosLikeAiCore_ZerosLike": {
-            "avg_us": 33.9635,
+            "avg_us": 33.2994,
             "launch_count": 1
           },
           "chunk_bwd_kernel_dqkwg_postgate_ds_reuse": {
-            "avg_us": 5007.7282,
+            "avg_us": 4998.5298,
             "launch_count": 1
           },
-          "chunk_fwd_kernel_o_tile_owned": {
-            "avg_us": 1961.7544,
+          "chunk_fwd_kernel_o_gated_score_producer": {
+            "avg_us": 500.754,
+            "launch_count": 1
+          },
+          "chunk_fwd_kernel_o_score_consumer": {
+            "avg_us": 999.616,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_bwd_kernel_dhu_blockdim64": {
-            "avg_us": 4266.7808,
+            "avg_us": 4252.6921,
             "launch_count": 1
           },
           "chunk_gated_delta_rule_fwd_kernel_h_v128": {
-            "avg_us": 2294.8056,
+            "avg_us": 2292.9698,
             "launch_count": 1
           },
           "chunk_local_cumsum_scalar_kernel": {
-            "avg_us": 40.2658,
+            "avg_us": 42.3238,
             "launch_count": 2
           },
           "chunk_scaled_dot_kkt_fwd_kernel": {
-            "avg_us": 478.3711,
+            "avg_us": 478.1451,
             "launch_count": 1
           },
           "prepare_wy_repr_bwd_split_stage2_kernel_fused": {
-            "avg_us": 2476.149,
+            "avg_us": 2482.5573,
             "launch_count": 1
           },
           "re_wy_repr_bwd_split_stage1_kernel_adjoint_batch2": {
-            "avg_us": 2756.7641,
+            "avg_us": 2777.487,
             "launch_count": 1
           },
           "recompute_w_u_fwd_kernel": {
-            "avg_us": 991.6799,
+            "avg_us": 990.8917,
             "launch_count": 1
           },
           "solve_tril_64x64_kernel": {
-            "avg_us": 1794.3198,
+            "avg_us": 2003.6762,
             "launch_count": 1
           }
         }
       },
-      "speedup_vs_torch": 2.2994,
+      "speedup_vs_torch": 2.3152,
       "error_type": null,
       "error_msg": null
     }
