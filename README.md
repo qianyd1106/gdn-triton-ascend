@@ -21,6 +21,7 @@ The repository contains:
 | Flash ACLNN reference | 23.91 ms |
 | Pure Triton reference | 48.72 ms |
 | Sanitized-source recheck | 1.1489x, impl 20.77 ms, 3/3 |
+| Full 576-case precision | **576/576 PASS** (golden = flash ACLNN, 6 outputs per case) |
 
 ### Full 576 cases (Event, warmup 5 / repeats 10)
 
@@ -58,6 +59,7 @@ The repository contains:
 │   ├── perf_vs_puretriton.json                      # 3-case vs pure Triton (2.3396x)
 │   ├── recheck_verify.json                          # sanitized-source recheck (3/3)
 │   ├── recheck_perf_vs_aclnn.json                   # sanitized-source recheck (1.1489x)
+│   ├── verify_result_full_576.json                  # full 576-case precision (576/576)
 │   ├── full_flash.json                              # 576-case flash ACLNN
 │   ├── full_pure.json                               # 576-case pure Triton
 │   ├── full_g087.json                               # 576-case g087 version
@@ -120,7 +122,7 @@ Single-kernel fwd_o: **1756.4 → 1356.4 us (−22.8%)**.
 ## Precision
 
 - Strict precision uses the eco open-source standard, golden = flash ACLNN. The optimized version passes 3/3 representative cases.
-- The 576-case run checks `isfinite` for every case; it is a performance sweep, not a full 576-case tolerance check.
+- **Full 576-case precision: 576/576 PASS, 0 failures** (golden = flash ACLNN, 6 outputs per case; ~94 min). The 576-case performance sweep also checks `isfinite`.
 - Pure Triton differs from flash ACLNN in fp32 `dg` reference behavior (strict matched_ratio ≈ 0.19, max_abs ≈ 4.5e-3 with 0 elements outside the hard bound), so pure Triton is used only as a performance baseline.
 
 ## Source fingerprints

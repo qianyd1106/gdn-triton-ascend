@@ -1,0 +1,11 @@
+{
+  "op_name": "GatedDeltaRuleTraining",
+  "total_cases": 576,
+  "passed_cases": 576,
+  "failed_cases": 0,
+  "failures": [],
+  "scope": "full_576",
+  "metric": "eco_open_source",
+  "timing_method": "official triton-op-verifier per-case compare",
+  "note": "full 576-case precision verification, 50-case batches"
+}

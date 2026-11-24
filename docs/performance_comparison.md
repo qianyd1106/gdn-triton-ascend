@@ -36,7 +36,7 @@
 
 - flash ACLNN、g087 版、fwdoport 版均在 3 个代表 case 上 **3/3 PASS**（golden = flash ACLNN）。
 - 纯 Triton 与 flash 在 fp32 `dg` 上存在参考实现差异（严格 matched_ratio≈0.19，max_abs≈4.5e-3，硬上限内 0 越限），因此纯 Triton 仅作为性能基线。
-- 全量 576 case 本轮检查每个 case 输出 `isfinite`；严格精度验收以 flash 为 golden。
+- **全量 576-case 精度已补跑：576/576 PASS，0 失败**（golden = flash ACLNN，逐 case 比对 6 个输出；总耗时约 94 min）。
 
 ## 6. 原始数据
 
@@ -44,3 +44,4 @@
 - `results/full_pure.json`
 - `results/full_g087.json`
 - `results/full_local_fwdoport.json`
+- `results/verify_result_full_576.json`

@@ -15,6 +15,7 @@
 | 3-case sanitized 源码复测 | **1.1489x**（impl 20.7693 ms / framework 23.8617 ms），3/3 |
 | 576-case 全量 vs flash ACLNN | **1.1595x**（23.63 ms vs 27.40 ms 中位延迟） |
 | 576-case 全量 vs 纯 Triton | **2.3438x** |
+| 576-case 全量精度 | **576/576 PASS**（golden = flash ACLNN，逐 case 6 输出；总耗时约 94 min） |
 
 ## 2. 优化目标
 
@@ -52,6 +53,7 @@
 | 官方 verifier recheck | **1.1541x**，impl 20.7200 ms，3/3 |
 | sanitized 源码复测 | 1.1489x，impl 20.7693 ms，3/3 |
 | 全量 576 case（Event，warmup 5 / repeats 10） | **23.63 ms 中位**，相对 flash **1.1595x**，相对纯 Triton **2.3438x** |
+| 全量 576-case 精度 | **576/576 PASS**，0 失败（golden = flash ACLNN） |
 
 全量 576 case 中，fwdoport 版 **576/576** 个 case 超过 flash 1.05x，**575/576** 超过 1.10x，**334/576** 超过 1.15x；逐 case 加速比 min / 中位 / max = 1.0986x / 1.1528x / 1.2000x。
 
